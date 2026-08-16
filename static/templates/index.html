@@ -3,21 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Get-it</title>
+<link rel="stylesheet" href="{{{{ url_for('static', filename='css/getit.css') }}}}">
 </head>
 
 <body>
 
-<img src="{{{{ url_for('static', filename='img/logo-getit.png') }}}}">
-<p>Como o Post-it, mas com outro verbo</p>
+  <div class="container">
+  <header>
+    <img src="{{{{ url_for('static', filename='img/logo-getit.png') }}}}">
+    <p>Como o Post-it, mas com outro verbo</p>
+  </header>
 
 <form action="/submit" method="POST">
     <label for="titulo">Título</label>
-    <input id="titulo" type="text" name="titulo" />
+    <input id="titulo" type="text" name="titulo" placeholder="Titulo da nota" />
     <label for="detalhes">Detalhes</label>
-    <input id="detalhes" name="detalhes" />
-    <input type="submit" />
+    <input id="detalhes" name="detalhes" placeholder="Detalhes da nota" />
+    <input type="submit" value="Criar nota"/>
 </form>
 
+<h2>Notas</h2>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
+      <path d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0" />
+    </clipPath>
+  </defs>
+</svg>
 
 <ul>
   {notes}
