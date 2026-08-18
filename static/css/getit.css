@@ -184,6 +184,7 @@ li:nth-child(6n+6) .sticky-content { --note-color: #ffd966; }
     color: #4a4a4a;
     border-bottom: 2px dotted rgba(0, 0, 0, 0.2);
     padding-bottom: 5px;
+    padding-right: 25px;
     word-wrap: break-word;
 }
 
@@ -192,4 +193,21 @@ li:nth-child(6n+6) .sticky-content { --note-color: #ffd966; }
     line-height: 1.4;
     color: #5a5a5a;
     word-wrap: break-word;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    color: #ff1818;
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.delete-icon:hover {
+    opacity: 1;
+    transform: scale(1.1);
 }

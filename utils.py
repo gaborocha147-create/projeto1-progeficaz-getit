@@ -24,7 +24,14 @@ def save_note(titulo, detalhes):
 def get_notes():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('SELECT titulo, detalhes FROM notes ORDER BY id ASC')
+    cursor.execute('SELECT id, titulo, detalhes FROM notes ORDER BY id ASC')
     notes = cursor.fetchall()
     conn.close()
-    return [{'titulo': note['titulo'], 'detalhes': note['detalhes']} for note in notes]
+    return [{'id': note['id'], 'titulo': note['titulo'], 'detalhes': note['detalhes']} for note in notes]
+
+def delete_note(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM notes WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
