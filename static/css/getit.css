@@ -195,19 +195,109 @@ li:nth-child(6n+6) .sticky-content { --note-color: #ffd966; }
     word-wrap: break-word;
 }
 
-.delete-icon {
+.note-icons {
     position: absolute;
     top: 5px;
-    right: 12px;
-    color: #ff1818;
-    text-decoration: none;
-    font-size: 1rem;
-    opacity: 0.6;
-    transition: opacity 0.3s;
+    right: 14px;
+    display: flex;
+    gap: 8px;
     z-index: 2;
 }
 
-.delete-icon:hover {
+.edit-icon, .delete-icon {
+    text-decoration: none;
+    font-size: 1rem;
+    opacity: 0.6;
+    transition: all 0.3s;
+}
+
+.edit-icon {
+    color: #4a90e2;
+}
+
+.delete-icon {
+    color: #ff4444;
+}
+
+.edit-icon:hover, .delete-icon:hover {
     opacity: 1;
     transform: scale(1.1);
+}
+
+li h3 {
+    padding-right: 50px;
+}
+
+.edit-form {
+    background-color: #ffd966;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 6px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 0 auto 40px;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+
+.edit-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #414141;
+    font-size: 1.1rem;
+}
+
+.edit-form input[type="text"], .edit-form input[name="detalhes"] {
+    width: 90%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px dashed #c0a97a;
+    border-radius: 5px;
+    font-family: 'Comic Sans MS', 'Arial', sans-serif;
+    font-size: 1rem;
+    background-color: #fffef7;
+}
+
+.edit-form input:focus {
+    outline: none;
+    border-color: #ffb347;
+    border-style: solid;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.save-btn, .cancel-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    flex: 1;
+}
+
+.save-btn {
+    background-color: #4CAF50;
+    color: white;
+    font-family: 'Comic Sans MS'
+}
+
+.save-btn:hover {
+    background-color: #45a049;
+}
+
+.cancel-btn {
+    background-color: #ff4444;
+    color: white;
+    font-family: 'Comic Sans MS'
+}
+
+.cancel-btn:hover {
+    background-color: #ff6666;
 }

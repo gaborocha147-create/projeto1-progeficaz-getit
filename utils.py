@@ -17,21 +17,38 @@ def load_template(filename):
 def save_note(titulo, detalhes):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO notes (titulo, detalhes) VALUES (?, ?)', (titulo, detalhes))
+    cursor.execute('INSERT INTO note (title, content) VALUES (?, ?)', (titulo, detalhes))
     conn.commit()
     conn.close()
     
 def get_notes():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('SELECT id, titulo, detalhes FROM notes ORDER BY id ASC')
+    cursor.execute('SELECT id, title, content FROM note ORDER BY id ASC')
     notes = cursor.fetchall()
     conn.close()
-    return [{'id': note['id'], 'titulo': note['titulo'], 'detalhes': note['detalhes']} for note in notes]
+    return [{'id': note['id'], 'title': note['title'], 'content': note['content']} for note in notes]
 
 def delete_note(id):
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('DELETE FROM notes WHERE id = ?', (id,))
+    cursor.execute('DELETE FROM note WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+
+def get_note(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, title, content FROM note WHERE id = ?', (id,))
+    note = cursor.fetchone()
+    conn.close()
+    if note:
+        return {'id': note['id'], 'title': note['title'], 'content': note['content']}
+    return None
+
+def update_note(id, new_title, new_detalhes):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('UPDATE note SET title = ?, content = ? WHERE id = ?', (new_title, new_detalhes, id))
     conn.commit()
     conn.close()

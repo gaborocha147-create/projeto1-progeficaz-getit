@@ -4,10 +4,10 @@ con = sqlite3.connect('banco.db')
 cur = con.cursor()
 
 cur.execute('''
-    CREATE TABLE IF NOT EXISTS notes (
+    CREATE TABLE IF NOT EXISTS note (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        titulo TEXT NOT NULL,
-        detalhes TEXT NOT NULL
+        title TEXT NOT NULL,
+        content TEXT NOT NULL
     )
 ''')
 
