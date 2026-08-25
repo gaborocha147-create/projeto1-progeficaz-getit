@@ -204,7 +204,7 @@ li:nth-child(6n+6) .sticky-content { --note-color: #ffd966; }
     z-index: 2;
 }
 
-.edit-icon, .delete-icon {
+.edit-icon, .delete-icon, .favorite-icon {
     text-decoration: none;
     font-size: 1rem;
     opacity: 0.6;
@@ -219,7 +219,11 @@ li:nth-child(6n+6) .sticky-content { --note-color: #ffd966; }
     color: #ff4444;
 }
 
-.edit-icon:hover, .delete-icon:hover {
+.favorite-icon {
+    color: #ffb520;
+}
+
+.edit-icon:hover, .delete-icon:hover, .favorite-icon:hover {
     opacity: 1;
     transform: scale(1.1);
 }

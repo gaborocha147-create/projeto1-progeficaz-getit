@@ -1,9 +1,9 @@
-from utils import get_notes, load_template, save_note, delete_note, get_note, update_note
+from utils import get_notes, load_template, save_note, delete_note, get_note, update_note, favoritar
 
 def index():
     note_template = load_template('components/note.html')
     notes_li = [
-        note_template.format(id=dados['id'], title=dados['title'], details=dados['content'])
+        note_template.format(id=dados['id'], title=dados['title'], details=dados['content'], favorite_class='fas' if dados['favorite'] else 'far')
         for dados in get_notes()
     ]
     notes = '\n'.join(notes_li)
@@ -27,3 +27,6 @@ def edit(id):
 
 def update(id, titulo, detalhes):
     update_note(id, titulo, detalhes)
+    
+def favorite(id):
+    favoritar(id)

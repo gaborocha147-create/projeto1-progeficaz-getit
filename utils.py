@@ -24,10 +24,10 @@ def save_note(titulo, detalhes):
 def get_notes():
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute('SELECT id, title, content FROM note ORDER BY id ASC')
+    cursor.execute('SELECT id, title, content, favorite FROM note ORDER BY favorite DESC, id ASC')
     notes = cursor.fetchall()
     conn.close()
-    return [{'id': note['id'], 'title': note['title'], 'content': note['content']} for note in notes]
+    return [{'id': note['id'], 'title': note['title'], 'content': note['content'], 'favorite': note['favorite']} for note in notes]
 
 def delete_note(id):
     conn = get_db_connection()
@@ -51,4 +51,15 @@ def update_note(id, new_title, new_detalhes):
     cursor = conn.cursor()
     cursor.execute('UPDATE note SET title = ?, content = ? WHERE id = ?', (new_title, new_detalhes, id))
     conn.commit()
+    conn.close()
+    
+def favoritar(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT favorite FROM note WHERE id = ?', (id,))
+    row = cursor.fetchone()
+    if row:
+        novo_valor = 0 if row['favorite'] else 1
+        cursor.execute('UPDATE note SET favorite = ? WHERE id = ?', (novo_valor, id))
+        conn.commit()
     conn.close()
